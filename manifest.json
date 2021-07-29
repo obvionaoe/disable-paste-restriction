@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "version": "0.1",
+  "name": "Disable Paste Restriction",
+  "description": "A Chrome extension to disable anti-pasting in input fields.",
+  "browser_action": {
+    "default_icon": "img/icon.jpg",
+    "default_title":"Disable Paste Restriction"
+  },
+  "content_scripts": [
+    {
+      "js": ["js/content.js"],
+      "matches": ["<all_urls>"],
+      "run_at": "document_start"
+    }
+  ]
+}

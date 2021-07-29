@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Preventing paste into an input field</h1>
+  <p>This example demonstrates how to stop a user from pasting content into a HTML input form field using JavaScript.
+    Check the HTML and JavaScript panes for more details or scroll to the bottom to find a code example.</p>
+
+  <p>This example was created by <a
+      href="https://dev.to/claireparker/how-to-prevent-pasting-into-input-fields-nn">Claire Parker-Jones</a> and I only
+    forked it in case it was deleted or moved.
+
+  <div><label for="paste-ok">✅ You can paste in this field as normal</label></div>
+  <div><input name ="green" type="text" id="paste-ok" /></div>
+
+  <div><label for="paste-no">🛑 You can't paste in this field: this uses the attribute <code>onpaste</code></label>
+  </div>
+  <div><input name="blocked" type="text" id="paste-no" onpaste="return false" />
+  </div>
+
+  <div><label for="paste-no-event">🛑 You can't paste in this field either: this uses an event listener attached to the
+      input field</label></div>
+  <div><input name="blocked-easy" type="text" id="paste-no-event" />
+  </div>
+
+  <p>📌 Works in modern browsers. The paste event is part of the Clipboard API. Check out the <a
+      href="https://caniuse.com/#feat=clipboard">caniuse stats</a>.</p>
+
+
+
+  <h2>Code Example</h2>
+  <pre><code>&lt;input type="text" id="paste-no-event" /&gt;
+&lt;script&gt;
+  const pasteBox = document.getElementById("paste-no-event");
+  pasteBox.onpaste = e => {
+    e.preventDefault();
+    return false;
+  };
+&lt;/script&gt;</code></pre>
+
+  <h2>Bypassing in Code</h2>
+
+  <p>Any of the following lines of code can remove the protection.</p>
+
+  <pre><code>
+document.getElementById("paste-no").onpaste={};
+document.getElementById("paste-no").onpaste=null;
+document.getElementById("paste-no").onpaste=new function(){};
+</code></pre>
+
+  <p>I can bypass the protection from the console or by DOM editing</p>
+
+  <pre><code>
+document.getElementById("paste-no-event").value="hello";
+</code></pre>
+</body>
+
+</html>
